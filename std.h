@@ -6,6 +6,7 @@
 #include <stdarg.h>
 #include "list.h"
 #include "tree.h"
+#include "queue.h"
 
 /*!
  \def HEAPIFY(...) safe_memcpy(malloc(sizeof(__VA_ARGS__)),&__VA_ARGS__, sizeof(__VA_ARGS__))
