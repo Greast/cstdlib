@@ -1,7 +1,7 @@
 #include "queue.c"
 
+__attribute__((nonnull(1)))
 int queue_push(struct queue ** queue, void * value){
-  if(!queue) return -1;
   if(!*queue){
     *queue = malloc(sizeof(**queue));
     (*queue) -> first = NULL;
@@ -12,8 +12,8 @@ int queue_push(struct queue ** queue, void * value){
   return ret;
 }
 
+__attribute__((nonnull(1)))
 void *queue_pop(struct queue * queue){
-  if(!queue) return NULL;
   void * ret = list_remove(&queue->first, 0);
   if(!queue->first){
     (*queue) -> last = &(*queue) -> first;
