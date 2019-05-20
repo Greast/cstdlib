@@ -1,4 +1,5 @@
-#include "queue.c"
+#include "queue.h"
+#include "std.h"
 
 __attribute__((nonnull(1)))
 int queue_push(struct queue ** queue, void * value){
@@ -16,15 +17,16 @@ __attribute__((nonnull(1)))
 void *queue_pop(struct queue * queue){
   void * ret = list_remove(&queue->first, 0);
   if(!queue->first){
-    (*queue) -> last = &(*queue) -> first;
+    queue -> last = &queue -> first;
   }
   return ret;
 }
 
 int queue_merge(struct queue ** lhs, struct queue * rhs){
   if(!*lhs){
-    *queue = malloc(sizeof(**queue));
-    (*queue) -> first = NULL;
+    *lhs = malloc(sizeof(**lhs));
+    (*lhs) -> first = NULL;
   }
-  (*(*queue) -> last) -> next = rhs->first;
+  (*(*lhs) -> last) -> next = rhs->first;
+  return 0;
 }

@@ -24,7 +24,7 @@ int list_join(struct list * list, int(*print)(FILE * stream, const void *), FILE
   size_t sum = 0;
   while (list) {
     sum += print(stream, list->value);
-    if(list->next) fprintf(strea, seperator);
+    if(list->next) fprintf(stream, "%s", seperator);
     list = list->next;
   }
   return sum;
@@ -32,7 +32,6 @@ int list_join(struct list * list, int(*print)(FILE * stream, const void *), FILE
 
 __attribute__((nonnull(1)))
 void* list_remove(struct list ** list, const size_t size){
-  if(!list) return NULL;
   if(size) return list_remove(&(*list)->next, size - 1);
   struct list * temp = *list;
   *list = temp->next;
@@ -41,12 +40,13 @@ void* list_remove(struct list ** list, const size_t size){
   return value;
 }
 
-int list_reverse(struct list * list){
-  struct list * next = *l, * old = NULL;
+int list_reverse(struct list ** list){
+  struct list * next = *list, * old = NULL;
   while (next) {
-    *l = next;
-    next = (*l)->next;
-    (*l)-> next = old;
-    old = *l;
+    *list = next;
+    next = (*list)->next;
+    (*list)-> next = old;
+    old = *list;
   }
+  return 0;
 }

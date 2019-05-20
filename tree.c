@@ -13,7 +13,7 @@ int tree_add(struct tree ** tree, int(*cmp)(const void*, const void*), const voi
   }
   const int ret = cmp((*tree)->node.key, key);
   if(!ret) return -1;
-  struct tree ** child = 0 < cmp ? &(*tree)->rhs : &(*tree)->lhs;
+  struct tree ** child = 0 < ret ? &(*tree)->rhs : &(*tree)->lhs;
   return tree_add(child, cmp, key, value);
 }
 
@@ -24,22 +24,22 @@ void ** tree_get(struct tree ** tree, int(*cmp)(const void*, const void*), const
   if(!ret) {
     return &(*tree)->node.value;
   };
-  struct tree ** child = 0 < cmp ? &(*tree)->rhs : &(*tree)->lhs;
+  struct tree ** child = 0 < ret ? &(*tree)->rhs : &(*tree)->lhs;
   return tree_get(child, cmp, key);
 }
 
-__attribute__((nonnull(1,2,3)))
-int tree_join(struct tree* tree, int(*print)(const void*, const void*), FILE*stream, const char* sep){
+__attribute__((nonnull(2,3,4)))
+int tree_join(struct tree* tree, int(*print)(FILE* stream, const void* lhs, const void* rhs), FILE* stream, const char* seperator){
   int sum = 0;
   if(!tree) return sum;
   int ret;
-  if(ret = tree_join(tree->lhs, print, stream, sep)){
-    sum += ret + fprintf(stream, "%s", sep);
+  if((ret = tree_join(tree->lhs, print, stream, seperator))){
+    sum += ret + fprintf(stream, "%s", seperator);
   }
-  sum += print(tree->node.key, tree->node.value);
+  sum += print(stream, tree->node.key, tree->node.value);
 
-  if(ret = tree_join(tree->rhs, print, stream, sep)){
-    sum += ret + fprintf(stream, "%s", sep);
+  if((ret = tree_join(tree->rhs, print, stream, seperator))){
+    sum += ret + fprintf(stream, "%s", seperator);
   }
   return sum;
 }

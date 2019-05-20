@@ -53,11 +53,11 @@ void* list_remove(struct list ** list, const size_t index);
 int list_join(struct list * list, int(*print)(FILE* stream, const void *value), FILE * stream, const char * seperator);
 
 /*!
-  \fn int list_reverse(struct list * list)
+  \fn int list_reverse(struct list ** list)
   \brief Reverse the list
 
   \param list The list to be Reversed.
 */
-int list_reverse(struct list * list);
+int list_reverse(struct list ** list);
 
 #endif /* end of include guard: _C_STD_LIB_LIST_H_ */
