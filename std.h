@@ -13,7 +13,7 @@
  Allocates memory for the given value and copies the given value to said memory.
 */
 
-#define HEAPIFY(...) safe_memcpy(malloc(sizeof(__VA_ARGS__)),&__VA_ARGS__, sizeof(__VA_ARGS__));
+#define HEAPIFY(...) safe_memcpy(malloc(sizeof(__VA_ARGS__)),&__VA_ARGS__, sizeof(__VA_ARGS__))
 
 /*! \fn void * safe_memcpy(void * destination, const void* source, const size_t size)
     \brief Safe version of memcpy

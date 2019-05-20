@@ -5,7 +5,7 @@ FILES = std.o tree.o list.o queue.o
 std: $(FILE)
 
 shared : $(FILES)
-	$(CC) -shared -o libstd.so $(CFLAGS)  $^
+	$(CC) -shared -o libstd.so $(CFLAGS) $^
 
 static : $(FILES)
 	ar -rc libstd.a $^
