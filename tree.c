@@ -8,7 +8,7 @@ int tree_add(struct tree ** tree, int(*cmp)(const void*, const void*), const voi
           .value = value,
         }
       };
-      *tree = HEAPIFY(new_tree)
+      *tree = HEAPIFY(new_tree);
       return 0;
   }
   const int ret = cmp((*tree)->node.key, key);

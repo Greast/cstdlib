@@ -2,7 +2,8 @@ CFLAGS= -fPIC -std=c11 -pedantic -Wall -Werror -Wextra -Wuninitialized -Wmaybe-u
 
 FILES = std.o tree.o list.o queue.o
 
-std: $(FILE)
+std: $(FILES)
+	$(CC) -c $^
 
 shared : $(FILES)
 	$(CC) -shared -o libstd.so $(CFLAGS) $^
