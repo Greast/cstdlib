@@ -47,4 +47,10 @@ void ** tree_get(struct tree ** tree, int(*compare)(const void* lhs, const void*
 int tree_join(struct tree* tree, int(*print)(FILE* stream, const void* lhs, const void* rhs), FILE* stream, const char* seperator);
 
 
+/*! \fn struct list * tree_values(struct tree* tree);
+    \brief Returns a list containing all values form the tree.
+    \param tree The tree where the values are obtained from.
+*/
+struct list * tree_values(struct tree* tree);
+
 #endif /* end of include guard: _C_STD_LIB_TREE_H_*/

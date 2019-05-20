@@ -1,4 +1,5 @@
 #include "tree.h"
+#include "list.h"
 __attribute__((nonnull(1,2)))
 int tree_add(struct tree ** tree, int(*cmp)(const void*, const void*), const void* key, void* value){
   if(!*tree) {
@@ -42,4 +43,17 @@ int tree_join(struct tree* tree, int(*print)(FILE* stream, const void* lhs, cons
     sum += ret + fprintf(stream, "%s", seperator);
   }
   return sum;
+}
+
+void tree_values_recursiv(struct list ** list,  struct tree* tree){
+  if(!tree) return;
+  tree_values_recursiv(list, tree->lhs);
+  list_add(list, tree->node.value);
+  tree_values_recursiv(list, tree->rhs);
+}
+
+struct list * tree_values(struct tree* tree){
+  struct list * list = NULL;
+  tree_values_recursiv(&list, tree);
+  return list;
 }

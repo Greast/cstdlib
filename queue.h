@@ -38,7 +38,7 @@ void * queue_pop(struct queue * queue);
 \brief Merge the right-hand side to the left-hand side.
 
 \param lhs The queue, which is extended.
-\param the The queue with which to extend the left-hand side.
+\param rhs The queue with which to extend the left-hand side.
 */
 int queue_merge(struct queue ** lhs, struct queue * rhs);
 
