@@ -28,4 +28,7 @@
 
 void * safe_memcpy(void * destination, const void* source, const size_t size);
 
+typedef int (*) (const void*,const void*) gcmp_t
+typedef int (*) (FILE *, const void*) gprint_t
+
 #endif /* end of include guard: _CSTD_LIB_H_ */
