@@ -29,13 +29,13 @@ struct tree{
 */
 int tree_add(struct tree ** tree, int(*compare)(const void* lhs, const void* rhs), const void* key, void* value);
 
-/*! \fn void ** tree_get(struct tree ** tree, int(*compare)(const void* lhs, const void* rhs), const void* key)
+/*! \fn void ** tree_get(struct tree * tree, int(*compare)(const void* lhs, const void* rhs), const void* key)
     \brief Gets The value by the accociated key.
     \param tree The tree, which to retrive the value from.
     \param compare The callback function, specifies the order of the tree.
     \param key The key, which accociates, the value to be retrived.
 */
-void ** tree_get(struct tree ** tree, int(*compare)(const void* lhs, const void* rhs), const void* key);
+void ** tree_get(struct tree * tree, int(*compare)(const void* lhs, const void* rhs), const void* key);
 
 /*! \fn int tree_join(struct tree* tree, int(*print)(FILE* stream, const void* lhs, const void* rhs), FILE* stream, const char* seperator)
     \brief Writes then given tree, with the left->right ordering, to the given stream.

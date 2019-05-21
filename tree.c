@@ -19,13 +19,12 @@ int tree_add(struct tree ** tree, int(*cmp)(const void*, const void*), const voi
 }
 
 __attribute__((nonnull(1,2)))
-void ** tree_get(struct tree ** tree, int(*cmp)(const void*, const void*), const void* key){
-  if(!*tree) return NULL;
-  const int ret = cmp((*tree)->node.key, key);
+void ** tree_get(struct tree * tree, int(*cmp)(const void*, const void*), const void* key){
+  const int ret = cmp(tree->node.key, key);
   if(!ret) {
-    return &(*tree)->node.value;
+    return &tree->node.value;
   };
-  struct tree ** child = 0 < ret ? &(*tree)->rhs : &(*tree)->lhs;
+  struct tree * child = 0 < ret ? tree->rhs : tree->lhs;
   return tree_get(child, cmp, key);
 }
 
